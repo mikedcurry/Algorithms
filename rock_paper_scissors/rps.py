@@ -3,7 +3,18 @@
 import sys
 
 def rock_paper_scissors(n):
-  pass 
+    m = [['rock'], ['paper'], ['scissors']]
+    l = []
+    #base-case n <= 1
+    if n <= 0:
+        return [[]]
+    elif n == 1:
+        return m
+    #recursion: append each member of n-1 to each member of m until n-1 = 1
+    for i in m:
+        for p in rock_paper_scissors(n-1):
+            l.append(i + p)
+    return l
 
 
 if __name__ == "__main__":

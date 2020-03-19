@@ -3,7 +3,22 @@
 import sys
 
 def making_change(amount, denominations):
-  pass 
+    if amount == 0:
+        return 1 # only 1 way to count nothing...
+    cnt = 0  # count number of ways to make change
+    for i in denominations:
+        if i == 1:
+            cnt =+1  # only 1 way to break with all 1's
+        else:
+            for j in range(1, (amount // i) + 1): # for as many times as bill fits in amount
+                if amount == i * j:
+                    cnt += 1
+                elif amount > i * j:
+                    remainder = amount - i*j
+                    bills = [n for n in denominations if n < i]
+                    cnt += making_change(remainder, bills)
+    return cnt
+
 
 
 if __name__ == "__main__":
